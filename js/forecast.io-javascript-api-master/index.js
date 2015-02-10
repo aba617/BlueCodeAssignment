@@ -1,10 +1,11 @@
 var foreCastAPIKey = 'a1b36163b4e7aad2687f5d02c8ca8233';
-var currentAddress;
 var coords;
 var forecastURL = 'https://api.forecast.io/forecast/';
 
 function getLocation(position){
 	var geocoder;
+  var currentAddress;
+
     coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     geocoder = new google.maps.Geocoder();
    // var lat = coords.k;
@@ -16,7 +17,9 @@ function getLocation(position){
     	if(status == google.maps.GeocoderStatus.OK){
 			currentAddress=results[1].formatted_address;
       console.log(currentAddress);
-      document.getElementById("currentTemp").innerHTML = currentAddress;
+      //scoping
+      document.getElementById("currentAddress").innerHTML = currentAddress;
+    //  document.getElementById("currentTemp").innerHTML = condition.getTemperature();
 
     	}
     });
@@ -78,7 +81,7 @@ function getForecast(){
       items += "<li>"  + conditions_today[i].getTime('HH:mm') + ': ' + conditions_today[i].getTemperature() + "</li>";
     }
   
-    document.getElementById("itemList").innerHTML = items;
+    //document.getElementById("itemList").innerHTML = items;
   
     /*
      * GET DAILY CONDITIONS FOR NEXT 7 DAYS
@@ -91,7 +94,7 @@ function getForecast(){
       items2 += "<li>"  + conditions_week[i].getTime('YYYY-MM-DD') + ': ' + conditions_week[i].getMaxTemperature() + "</li>";
     }
   
-    document.getElementById("itemList2").innerHTML = items2;  
+   // document.getElementById("itemList2").innerHTML = items2;  
   }); 
 
 	}
